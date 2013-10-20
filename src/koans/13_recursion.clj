@@ -1,24 +1,34 @@
+; Need to study these functions more
 (defn is-even? [n]
-  (if (= n 0)
-    __
-    (___ (is-even? (dec n)))))
+  (if (= n 0) true (not (is-even? (dec n))) ))
 
 (defn is-even-bigint? [n]
   (loop [n   n
          acc true]
     (if (= n 0)
-      __
+      false
       (recur (dec n) (not acc)))))
 
 (defn recursive-reverse [coll]
-  __)
+  ; copied function..
+  (loop [coll coll
+         acc ()]
+    (if (seq coll)
+      (recur (rest coll) (conj acc (first coll)))
+      acc)))
 
 (defn factorial [n]
-  __)
+  ; copied function..
+  (loop [n  n
+         ; stylistic: why put this on a new line?
+         acc 1]
+    (if (= n 0)
+      acc
+     (recur (dec n) (* n acc)))))
 
 (meditations
   "Recursion ends with a base case"
-  (= true (is-even? 0))
+  (= true (is-even? 2))
 
   "And starts by moving toward that base case"
   (= false (is-even? 1))
